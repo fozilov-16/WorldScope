@@ -1,0 +1,118 @@
+{
+  "Header": {
+    "search": "Search countries",
+    "main": "Main",
+    "continents": "Continents",
+    "favorites": "Favorites",
+    "countries": "Countries"
+  },
+  "mainSection": {
+    "text": "Where land meets water, civilization often begins.",
+    "join": "Join us now!",
+    "text2": "Your passport to worldwide knowledge.",
+    "all": "All",
+    "area": "By Area",
+    "population": "By Population",
+    "gdp": "By  GDP",
+    "history": "By History"
+  },
+  "EarthSection": {
+    "text": "Learn Geography Visually*",
+    "desc1": "Discover countries with interactive maps and detailed facts.",
+    "desc2": "No sign up needed - start learning instantly!",
+    "button": "Explore countries",
+    "countries": "Countries",
+    "languages": "Languages",
+    "time": "Time zones",
+    "population": "Population",
+    "oceans": "Oceans"
+  },
+  "Continents": {
+    "text": "Begin with continental* categories ",
+    "text2": "that provide contextual understanding",
+    "text3": "before exploring individual countries",
+    "countries": "countries",
+    "explore": "explore",
+    "asia": "Asia",
+    "asiaText": "The world's largest and most populous continent, now a global hub of economic growth, technological innovation and immense cultural contrast.",
+    "africa": "Africa",
+    "africaText": "The cradle of humankind, home to unparalleled biodiversity, ancient civilizations, and vibrant cultures across 54 nations.",
+    "europe": "Europe",
+    "europeText": "A historically influential continent with a rich cultural legacy from ancient Greece and Rome to the Renaissance and Industrial Revolution.",
+    "northAmerica": "North America",
+    "northAmericaText": "A continent of vast natural resources & dramatic landscapes, driven by technological advancement and economic power, blending diverse immigrant cultures with indigenous heritage.",
+    "southAmerica": "South America",
+    "southAmericaText": "A continent of immense ecological wealth, from the Amazon rainforest to the Andes mountains, known for vibrant cultures, colonial history, and evolving economies.",
+    "oceania": "Oceania",
+    "oceaniaText": "A vast region of isolated islands and the Australian continent, featuring unique ecosystems and indigenous cultures, with modern societies built on European settlement."
+  },
+  "Favorites": {
+    "text": "You have nothing on your list yet.",
+    "text2": "It’s never too late to change it :)",
+    "add": "Add"
+  },
+  "CountryDay": {
+    "text": "Country of the Day*",
+    "japan": "Japan",
+    "capital": "Capital",
+    "population": "Population",
+    "currency": "Currency",
+    "fact": "Fun Fact",
+    "about": "Japan is an island nation in East Asia, famous for its unique balance of ancient traditions and modern technology. The country is known for its rich history, strong cultural values, technological innovation, and diverse landscapes ranging from mountains and volcanoes to beautiful coastlines.",
+    "next": "Next country"
+  },
+  "PictureDay": {
+    "text": "Picture of the Day*",
+    "name": "Niagara Falls",
+    "location": "Canada",
+    "desc": "Niagara Falls is a group of three waterfalls located at the southern end of the Niagara Gorge, along the border between the Canadian province of Ontario and the U.S. state of New York. Approximately 700,000 gallons of water flow over the falls every second at speeds of up to 25 miles per hour. The vertical drop exceeds 176 feet.",
+    "explore": "explore more"
+  },
+  "Chart": {
+    "text": "World Population Distribution*",
+    "africa": "Africa",
+    "north": "North America",
+    "south": "South America",
+    "europe": "Europe",
+    "asia": "Asia"
+  },
+  "Identifier": {
+    "text": "Place Identifier Tool",
+    "text2": "Upload or drag a place image — AI will identify the country",
+    "tech": "AI-Powered Technology",
+    "tech2": "Can’t recognize a place? Discover it instantly!",
+    "drop": "Drop image here",
+    "or": "or",
+    "upload": "Upload from gallery"
+  },
+  "last": {
+    "text": "Earth's Extraordinary",
+    "text2": "Portfolio",
+    "text3": "Read Latest Geography Articles",
+    "button": "Learn more"
+  },
+  "Footer": {
+    "organized": "Organized",
+    "text": "So you don’t have to be",
+    "contact": "Contact us",
+    "about": "About us",
+    "top": "Top Lists",
+    "privacy": "Privacy and Policy",
+    "terms": "Terms and Conditions"
+  },
+  "TopByArea": {
+    "text": "Top largest countries by area*",
+    "button1":"learn more",
+    "button":"Learn more"
+  },
+  "TopByPopulation": {
+    "text": "Top largest countries by population*",
+    "button1":"learn more",
+    "button":"Learn more"
+  },
+  "TopByGdp": {
+    "text": "Top countries by GDP per capita*",
+    "button1": "learn more",
+    "button": "Learn more"
+  }
+}

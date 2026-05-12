@@ -1,0 +1,32 @@
+@import "tailwindcss";
+
+/* Основной шрифт */
+body {
+    font-family: var(--font-roboto);
+}
+
+/* Nico Moji */
+@font-face {
+  font-family: 'Nico Moji';
+  src: url('/fonts/NicoMoji-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+.font-nico {
+  font-family: 'Nico Moji', sans-serif;
+}
+
+/* Montserrat Alternates */
+@font-face {
+  font-family: 'Montserrat Alternates';
+  src: url('/fonts/MontSerrat.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+.font-mont {
+  font-family: 'Montserrat Alternates', sans-serif;
+}
