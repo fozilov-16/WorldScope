@@ -56,11 +56,11 @@ export default function Countries() {
 
     // extra filter
     if (filterType === "area") {
-      result.sort((a, b) => b.area - a.area);
+      result.sort((a, b) => (b.area ?? 0) - (a.area ?? 0));
     }
 
     if (filterType === "population") {
-      result.sort((a, b) => b.population - a.population);
+      result.sort((a, b) => (b.population ?? 0) - (a.population ?? 0));
     }
 
     // sort
