@@ -17,6 +17,7 @@ const Last = () => {
       gap-4 sm:gap-6
       text-center
       font-mont
+      pb-10
     ">
 
       <h1 className="text-[26px] sm:text-[64px] font-semibold leading-[120%]">

@@ -3,6 +3,8 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 export const API = process.env.NEXT_PUBLIC_URL_WORLDSCOUP;
+export const MEDIA = process.env.NEXT_PUBLIC_MEDIA_URL;
+
 
 type SearchParams = {
   locale: string;
@@ -131,6 +133,33 @@ export const getPhotoOfDay = createAsyncThunk(
     } catch (error) {
       console.error(error);
       return { results: [] };
+    }
+  }
+);
+
+
+export const recognizeCountryAI = createAsyncThunk(
+  "ai/recognizeCountryAI",
+  async (image: File) => {
+    try {
+      const formData = new FormData();
+
+      formData.append("image", image);
+
+      const { data } = await axios.post(
+        `${API}/ai/recognize/`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+
+      return data;
+    } catch (error) {
+      console.error(error);
+      return null;
     }
   }
 );

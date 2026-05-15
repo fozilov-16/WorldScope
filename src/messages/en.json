@@ -56,6 +56,8 @@
     "japan": "Japan",
     "capital": "Capital",
     "population": "Population",
+    "continent": "continent",
+    "area": "Area",
     "currency": "Currency",
     "fact": "Fun Fact",
     "about": "Japan is an island nation in East Asia, famous for its unique balance of ancient traditions and modern technology. The country is known for its rich history, strong cultural values, technological innovation, and diverse landscapes ranging from mountains and volcanoes to beautiful coastlines.",
@@ -114,5 +116,14 @@
     "text": "Top countries by GDP per capita*",
     "button1": "learn more",
     "button": "Learn more"
+  },
+  "Countries": {
+    "title": "Explore Countries",
+    "description": " Discover countries, population, GDP, capitals and more.",
+    "search": "Search countries",
+    "population": "Population",
+    "area": "Area",
+    "gdp": "GDP",
+    "learn": "Learn More"
   }
 }

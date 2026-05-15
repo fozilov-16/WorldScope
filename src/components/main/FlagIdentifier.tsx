@@ -1,22 +1,52 @@
 "use client"
 
-import React from "react"
-import { useTranslations } from "next-intl"
+import React, { useState } from "react"
+import { useTranslations, useLocale } from "next-intl"
 import Image from "next/image"
+
 import { Upload, Button } from "antd"
 import { InboxOutlined, UploadOutlined } from "@ant-design/icons"
+
 import type { UploadProps } from "antd"
+
+import { useAppDispatch, useAppSelector } from "@/src/store/hooks"
+
+import { recognizeCountryAI } from "@/src/reducers/api"
 
 const { Dragger } = Upload
 
 const FlagIdentifier = () => {
+
   const t = useTranslations("Identifier")
+
+  const locale = useLocale()
+
+  const dispatch = useAppDispatch()
+
+  const { aiResult, loading } = useAppSelector(
+    (state) => state.todos
+  )
+
+  const [preview, setPreview] = useState<string | null>(null)
+
+  const handleUpload = async (file: File) => {
+
+    setPreview(URL.createObjectURL(file))
+
+    await dispatch(recognizeCountryAI(file))
+  }
 
   const uploadProps: UploadProps = {
     name: "file",
     multiple: false,
     showUploadList: false,
-    beforeUpload: () => false,
+
+    beforeUpload: (file) => {
+
+      handleUpload(file)
+
+      return false
+    },
   }
 
   return (
@@ -34,27 +64,15 @@ const FlagIdentifier = () => {
         />
 
         <div className="flex flex-col items-center gap-4">
+
           <h1 className="font-nico text-[30px] sm:text-[48px] leading-[100%]">
-            {t("text")
-            .split(" ")
-            .map((word, index) => {
-
-              const isRussian = /[а-яА-ЯЁё]/.test(word);
-
-              return (
-                <span
-                  key={index}
-                  className={`${isRussian ? "font-mont text-[20px] sm:text-[38px] font-[600] leading-[120%] sm:leading-[100%]" : "font-nico"}`}
-                >
-                  {word}{" "}
-                </span>
-              );
-            })}
+            {t("text")}
           </h1>
 
           <p className="font-mont text-[14px] sm:text-[20px]">
             {t("text2")}
           </p>
+
         </div>
 
         <Image
@@ -70,7 +88,6 @@ const FlagIdentifier = () => {
       {/* CARD */}
       <div className="relative mt-14 w-full sm:w-[1200px] min-h-[320px] sm:min-h-[531px] rounded-[40px] overflow-hidden">
 
-        {/* BACKGROUND */}
         <Image
           src="/backIdentifier.png"
           alt="background"
@@ -79,7 +96,6 @@ const FlagIdentifier = () => {
           className="object-cover brightness-[0.75]"
         />
 
-        {/* CONTENT */}
         <div className="relative z-10 flex items-center justify-center p-6 sm:p-10 min-h-[320px] sm:min-h-[531px]">
 
           <div
@@ -104,27 +120,49 @@ const FlagIdentifier = () => {
               shadow-[0_0_60px_rgba(0,150,255,0.25)]
             "
           >
-            {/* Title */}
+
             <h2 className="text-[22px] sm:text-[40px] font-medium mb-3">
               {t("tech")}
             </h2>
 
-            {/* Subtitle */}
             <p className="text-[14px] sm:text-[18px] opacity-80 mb-8">
               {t("tech2")}
             </p>
 
-            {/* Upload Area */}
+            {/* PREVIEW */}
+            {preview && (
+              <div className="mb-6">
+
+                <Image
+                  src={preview}
+                  alt="preview"
+                  width={300}
+                  height={200}
+                  className="rounded-2xl object-cover"
+                />
+
+              </div>
+            )}
+
+            {/* UPLOAD */}
             <div className="w-full max-w-[500px]">
 
               <Dragger
                 {...uploadProps}
                 className="!bg-white/10 !border-white/30 !rounded-2xl hover:!border-white/60 !py-6"
               >
-                <InboxOutlined style={{ fontSize: 30, color: "white" }} />
+
+                <InboxOutlined
+                  style={{
+                    fontSize: 30,
+                    color: "white",
+                  }}
+                />
+
                 <p className="text-white mt-3 text-[18px] font-mont">
                   {t("drop")}
                 </p>
+
               </Dragger>
 
               <div className="my-5 opacity-70">
@@ -132,15 +170,45 @@ const FlagIdentifier = () => {
               </div>
 
               <Upload {...uploadProps}>
+
                 <Button
                   icon={<UploadOutlined />}
                   className="!bg-white/10 !text-white !border-white/30 hover:!bg-white/20 !rounded-xl"
                 >
                   {t("upload")}
                 </Button>
+
               </Upload>
 
             </div>
+
+            {/* LOADING */}
+            {loading && (
+              <p className="mt-6 text-[18px]">
+                AI analyzing image...
+              </p>
+            )}
+
+            {/* RESULT */}
+            {aiResult && !loading && (
+
+              <div className="mt-8 max-w-[700px] bg-white/10 rounded-3xl p-6 border border-white/20">
+
+                <h3 className="text-[30px] font-bold mb-3">
+                  {aiResult.predicted_country}
+                </h3>
+
+                <p className="text-[18px] opacity-90 mb-4">
+                  Confidence: {(aiResult.confidence * 100).toFixed(0)}%
+                </p>
+
+                <p className="text-[15px] leading-[170%] opacity-80">
+                  {aiResult.description}
+                </p>
+
+              </div>
+
+            )}
 
           </div>
 

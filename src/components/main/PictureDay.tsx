@@ -1,12 +1,25 @@
-"use client"
+"use client";
 
-import React from "react"
-import { useTranslations } from "next-intl"
-import Image from "next/image"
-import { ArrowLeft, Heart, MapPin } from "lucide-react"
+import React, { useEffect } from "react";
+import { useLocale, useTranslations } from "next-intl";
+import { ArrowLeft, Heart, MapPin } from "lucide-react";
+
+import { useAppDispatch, useAppSelector } from "@/src/store/hooks";
+import { getPhotoOfDay } from "@/src/reducers/api";
 
 const PictureDay = () => {
-  const t = useTranslations("PictureDay")
+  const t = useTranslations("PictureDay");
+
+  const dispatch = useAppDispatch();
+
+  const { photoOfDay } = useAppSelector((state) => state.todos);
+  const locale = useLocale()
+
+  useEffect(() => {
+    dispatch(getPhotoOfDay(locale));
+  }, [dispatch, locale]);
+
+  if (!photoOfDay) return null;
 
   return (
     <section className="relative flex flex-col items-center text-center px-4 pb-6 sm:pb-10">
@@ -20,13 +33,14 @@ const PictureDay = () => {
       <div className="relative w-full sm:w-[1200px] min-h-[400px] sm:min-h-[531px] rounded-[14px] sm:rounded-[50px] overflow-hidden">
 
         {/* IMAGE */}
-        <Image
-          src="/niagaraFalls.jpg"
-          alt="Niagara Falls"
-          fill
-          priority
-          className="object-cover"
+        <img
+          src={`http://127.0.0.1:8000${photoOfDay.image}`}
+          alt={photoOfDay.title}
+          className="absolute inset-0 w-full h-full object-cover"
         />
+
+        {/* OVERLAY */}
+        <div className="absolute inset-0 bg-black/30" />
 
         {/* CONTENT */}
         <div className="relative z-10 flex flex-col justify-between min-h-[400px] sm:min-h-[531px] p-6 sm:p-10 text-left text-white">
@@ -37,21 +51,25 @@ const PictureDay = () => {
             <div className="flex items-start justify-between gap-4">
 
               <h2 className="text-[32px] sm:text-[56px] font-nico leading-[100%]">
-                {t("name")
-                  .split(" ")
-                  .map((word, index) => {
+                {photoOfDay.title
+                ?.split(" ")
+                .map((word: string, index: number) => {
 
-                    const isRussian = /[а-яА-ЯЁё]/.test(word)
+                  const isRussian = /[а-яА-ЯЁё]/.test(word)
 
-                    return (
-                      <span
-                        key={index}
-                        className={isRussian ? "font-mont text-[32px] sm:text-[56px] font-medium" : "font-nico"}
-                      >
-                        {word}{" "}
-                      </span>
-                    )
-                  })}
+                  return (
+                    <span
+                      key={index}
+                      className={
+                        isRussian
+                          ? "font-mont text-[32px] sm:text-[58px] font-semibold"
+                          : "font-nico"
+                      }
+                    >
+                      {word}{" "}
+                    </span>
+                  )
+                })}
               </h2>
 
               <button className="w-[50px] h-[50px] sm:w-[60px] sm:h-[60px] rounded-full bg-white/10 backdrop-blur-xl border border-white/20 hover:bg-white/20 transition-all flex items-center justify-center">
@@ -62,7 +80,7 @@ const PictureDay = () => {
 
             <div className="flex items-center gap-2 mt-3 text-[16px] sm:text-[22px] font-mont">
               <MapPin size={20} />
-              <span>{t("location")}</span>
+              <span>{photoOfDay.location}</span>
             </div>
 
           </div>
@@ -71,7 +89,7 @@ const PictureDay = () => {
           <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
 
             <p className="max-w-[650px] text-[14px] sm:text-[16px] leading-[150%] font-mont mt-2">
-              {t("desc")}
+              {photoOfDay.description}
             </p>
 
             <div className="flex items-center gap-3">
@@ -89,11 +107,9 @@ const PictureDay = () => {
           </div>
 
         </div>
-
       </div>
-
     </section>
-  )
-}
+  );
+};
 
-export default PictureDay
+export default PictureDay;

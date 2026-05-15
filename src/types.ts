@@ -1,14 +1,25 @@
 export type Country = {
   id: number;
   name: string;
-  capital?: string;
-  continent?: string;
-  continent_display?: string;
-  population?: number;
-  area?: number;
-  flag?: string;
-  image?: string | null;
-  slug?: string;
+  capital: string;
+  continent: string;
+  continent_display: string;
+  population: number;
+  area: number;
+  flag: string;
+  image: string | null;
+  slug: string;
+};
+
+export type PhotoOfDay = {
+  id: number;
+  title: string;
+  location: string;
+  image: string | null;
+  description: string;
+  date: string;
+  is_active: boolean;
+  country: Country;
 };
 
 export type CountryById = {
@@ -22,7 +33,7 @@ export type CountryById = {
   flag?: string;
   image?: string | null;
   slug?: string;
-  languages?: [];
+  languages?: string[];
   religion?: string;
   time_zone?: string;
   calling_code?: string;
@@ -34,36 +45,40 @@ export type CountryById = {
   description?: string;
 };
 
-export type CountryOfDay = {
+export interface CountryOfDay {
   id: number;
-  name: string;
-  capital?: string;
-  continent?: string;
-  continent_display?: string;
-  population?: number;
-  area?: number;
-  flag?: string;
-  image?: string | null;
-  slug?: string;
-  fun_fact?: string;
-  date?: string;
-  is_active?: boolean;
+
+  country: {
+    id: number;
+    name: string;
+    capital: string;
+
+    continent: string;
+    continent_display: string;
+
+    population: number;
+    area: number;
+
+    flag: string;
+    image: string | null;
+
+    slug: string;
+  };
+
+  fun_fact: string;
+
+  image: string;
+
+  date: string;
+
+  is_active: boolean;
 };
 
-export type PhotoOfDay = {
+export interface AIRecognition {
   id: number;
-  title: string;
-  location: string;
-  name: string;
-  capital?: string;
-  continent?: string;
-  continent_display?: string;
-  population?: number;
-  area?: number;
-  flag?: string;
-  image?: string | null;
-  slug?: string;
-  description?: string;
-  date?: string;
-  is_active?: boolean;
-};
+  predicted_country: string;
+  confidence: number;
+  description: string;
+  created_at: string;
+  country_data: null;
+}

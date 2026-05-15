@@ -7,7 +7,7 @@ const Footer = () => {
   const t = useTranslations("Footer")
 
   return (
-    <footer className="mt-[80px] w-full bg-gradient-to-t from-[#1E599A] via-[#143B66] to-[#0A1E34] font-mont text-white">
+    <footer className="кw-full bg-gradient-to-t from-[#1E599A] via-[#143B66] to-[#0A1E34] font-mont text-white">
 
       <div className="max-w-[1200px] mx-auto px-6 py-8">
         
